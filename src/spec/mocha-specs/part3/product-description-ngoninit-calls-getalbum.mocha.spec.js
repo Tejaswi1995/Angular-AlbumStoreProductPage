@@ -12,14 +12,15 @@ describe('ProductDescription', function() {
     }
     let re = /ngOnInit\(\s*\)\s*\{\s*([\w\s\(\)\.\_\=\>]+)\;?\s*\}/
     let match = file.match(re);
-    assert(Array.isArray(match), "The ProductDescription `ngOnInit()` method body doesn't contain anything.")
+    
+    assert(Array.isArray(match), "1 The ProductDescription `ngOnInit()` method body doesn't contain anything.")
 
     let callToGetAlbum = match[1].trim();
-
+    console.log(callToGetAlbum);
     if (callToGetAlbum.includes('subscribe')) {
       let re2 = /this\._productService\s*\.\s*getAlbum\(1\)\s*\.\s*subscribe\(([\w\s\=\.\>]+)\)/
       let match2 = match[1].match(re2)
-      assert(Array.isArray(match2), "The ProductDescription's `ngOnInit()` method body isn't chaining the correct call to subscribe onto the end of the call to `getAlbum()`.")
+      assert(Array.isArray(match2), "2 The ProductDescription's `ngOnInit()` method body isn't chaining the correct call to subscribe onto the end of the call to `getAlbum()`.")
 
       let variable_used_to_capture_response = match2[1].match(/\s*(\w+)\s*\=/);
 
